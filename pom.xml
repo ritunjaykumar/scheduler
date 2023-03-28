@@ -15,7 +15,7 @@
 	<name>Attendance Scheduler</name>
 	<description>this project is responsible to keep attendance for all employee on time</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 

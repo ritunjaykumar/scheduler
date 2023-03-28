@@ -1,10 +1,7 @@
 package com.cashlinkglobal.scheduler.entity;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +15,8 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @Entity
 @Table(name = "ATTENDANCE_DETAILS")
+@Builder
+@ToString
 public class AttendanceDetails implements Serializable {
     @Id
     @Column(name = "id", unique = true)
@@ -42,6 +41,7 @@ public class AttendanceDetails implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @OneToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
     @JoinColumn(name = "LEAVE_TYPE", referencedColumnName = "ID")
     private LeaveTypeDetails leaveType;
 
