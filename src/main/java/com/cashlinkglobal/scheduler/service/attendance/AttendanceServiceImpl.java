@@ -3,6 +3,7 @@ package com.cashlinkglobal.scheduler.service.attendance;
 import com.cashlinkglobal.scheduler.entity.AttendanceDetails;
 import com.cashlinkglobal.scheduler.entity.EmployeeCredential;
 import com.cashlinkglobal.scheduler.entity.LeaveTypeDetails;
+import com.cashlinkglobal.scheduler.enums.AttendanceStatus;
 import com.cashlinkglobal.scheduler.repositry.AttendanceRepository;
 import com.cashlinkglobal.scheduler.service.employee.EmployeeService;
 import com.cashlinkglobal.scheduler.service.leave.LeaveService;
@@ -52,6 +53,7 @@ public class AttendanceServiceImpl implements AttendanceService {
                 .attendanceDate(LocalDate.now())
                 .description("Employee has taken leave on: " + LocalDate.now())
                 .leaveType(leaveType)
+                .flag(AttendanceStatus.LEAVE)
                 .build();
         logger.info(">> saving attendance details: {}", attendanceDetails);
         try {
