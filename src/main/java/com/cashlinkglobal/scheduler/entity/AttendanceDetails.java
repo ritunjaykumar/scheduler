@@ -48,9 +48,15 @@ public class AttendanceDetails implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "FLAG", nullable = false)
+    @Column(name = "PRESENT_FLAG", nullable = false)
     @Convert(converter = AttendanceStatusConverter.class)
     private AttendanceStatus flag;
+
+    @Column(name = "DAY", nullable = false, length = 20)
+    private String day;
+
+    @Column(name = "ATTENDANCE_ENABLED", nullable = false)
+    private boolean attendanceEnabled;
 
     @ToString.Exclude
     @OneToOne(cascade = CascadeType.ALL)
