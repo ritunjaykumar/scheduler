@@ -1,7 +1,18 @@
 server:
-  port: 1702
+  port: 8092
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8090/eureka
+  instance:
+    hostname: localhost
 
 spring:
+  application:
+    name: CGS_SCHEDULER
   datasource:
     username: postgres
     password: root
@@ -15,6 +26,7 @@ spring:
   main:
     banner-mode: off
     allow-circular-references: true
+    web-application-type: reactive
 cgs:
   default:
     leave_type_id: 18
@@ -24,6 +36,6 @@ cgs:
       name: cgs_scheduler_attendance_
       size: 10
   attendance:
-    interval-in-cron: 0 23 10 * * *
+    interval-in-cron: 0 44 12 * * *
 #    For example, a cron expression: 0 15 10 * * * is triggered to run at 10:15 a.m. every day ( every 0th second, 15th minute, 10th hour, every day)
 # cgs.default.leave_type_id
