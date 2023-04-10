@@ -26,7 +26,7 @@ spring:
   main:
     banner-mode: off
     allow-circular-references: true
-    web-application-type: reactive
+#    web-application-type: reactive
 cgs:
   default:
     leave_type_id: 18
@@ -36,6 +36,6 @@ cgs:
       name: cgs_scheduler_attendance_
       size: 10
   attendance:
-    interval-in-cron: 0 44 12 * * *
+    interval-in-cron: 0 01 10 * * *
 #    For example, a cron expression: 0 15 10 * * * is triggered to run at 10:15 a.m. every day ( every 0th second, 15th minute, 10th hour, every day)
 # cgs.default.leave_type_id
