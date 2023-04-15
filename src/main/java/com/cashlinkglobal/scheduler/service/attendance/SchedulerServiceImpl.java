@@ -104,6 +104,7 @@ public class SchedulerServiceImpl implements SchedulerService {
     }
 
     @Override
+    @Transactional
     public void increaseAttendance() {
         List<EmployeeDetails> employees = employeeService.getEmployees();
         int total = 0;
@@ -111,9 +112,10 @@ public class SchedulerServiceImpl implements SchedulerService {
         for (EmployeeDetails ed : employees) {
             logger.info(">> increasing employee leave for id: {}", ed.getEmployeeId());
             try {
-                int i = employeeSettingRepository.updateMaxLeaveByEmpId(ed.getEmailId());
-                if (i == 0) {
+                int i = employeeSettingRepository.updateMaxLeaveByEmpId(ed.getEmployeeId());
+                if (i == 1) {
                     total++;
+                    System.out.println("info: "+i);
                     logger.info(">> employee leave has increased: {}", ed.getEmployeeId());
                 } else {
                     missed.add(ed.getEmployeeId());
