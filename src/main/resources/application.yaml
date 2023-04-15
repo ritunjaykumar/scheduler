@@ -35,7 +35,10 @@ cgs:
     pool:
       name: cgs_scheduler_attendance_
       size: 10
-  attendance:
-    interval-in-cron: 0 01 10 * * *
+  scheduler:
+    attendance:
+      interval-in-cron: 0 58 13 * * *
+    leave:
+      interval-in-cron: 0 29 14 * * *
 #    For example, a cron expression: 0 15 10 * * * is triggered to run at 10:15 a.m. every day ( every 0th second, 15th minute, 10th hour, every day)
 # cgs.default.leave_type_id

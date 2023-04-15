@@ -2,13 +2,15 @@ package com.cashlinkglobal.scheduler.service.attendance;
 
 import com.cashlinkglobal.scheduler.entity.AttendanceDetails;
 import com.cashlinkglobal.scheduler.entity.CalenderDetails;
-import com.cashlinkglobal.scheduler.entity.EmployeeCredential;
+import com.cashlinkglobal.scheduler.entity.EmployeeDetails;
 import com.cashlinkglobal.scheduler.entity.LeaveTypeDetails;
 import com.cashlinkglobal.scheduler.enums.AttendanceStatus;
 import com.cashlinkglobal.scheduler.repositry.AttendanceRepository;
+import com.cashlinkglobal.scheduler.repositry.EmployeeSettingRepository;
 import com.cashlinkglobal.scheduler.service.calender.CalenderService;
 import com.cashlinkglobal.scheduler.service.employee.EmployeeService;
 import com.cashlinkglobal.scheduler.service.leave.LeaveService;
+import com.netflix.discovery.converters.Auto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class AttendanceServiceImpl implements AttendanceService {
-    private final Logger logger = LoggerFactory.getLogger(AttendanceServiceImpl.class);
+public class SchedulerServiceImpl implements SchedulerService {
+    private final Logger logger = LoggerFactory.getLogger(SchedulerServiceImpl.class);
     @Autowired
     private AttendanceRepository attendanceRepository;
     @Autowired
@@ -32,6 +35,8 @@ public class AttendanceServiceImpl implements AttendanceService {
     private LeaveService leaveService;
     @Autowired
     private CalenderService calenderService;
+    @Autowired
+    private EmployeeSettingRepository employeeSettingRepository;
     @Value("${cgs.default.leave_type_id}")
     private long defaultLeaveTypeId;
     @Value("${cgs.default.public_leave_id}")
@@ -81,8 +86,8 @@ public class AttendanceServiceImpl implements AttendanceService {
         logger.info(">> default leave details: {}", leaveDetails);
 
 
-        List<EmployeeCredential> employees = employeeService.getEmployees();
-        for (EmployeeCredential employee : employees) {
+        List<EmployeeDetails> employees = employeeService.getEmployees();
+        for (EmployeeDetails employee : employees) {
 
             AttendanceDetails attendanceDetails = AttendanceDetails.builder()
                     .employeeId(employee.getEmployeeId())
@@ -96,6 +101,31 @@ public class AttendanceServiceImpl implements AttendanceService {
 
             saveAttendanceRecord(attendanceDetails);
         }
+    }
+
+    @Override
+    public void increaseAttendance() {
+        List<EmployeeDetails> employees = employeeService.getEmployees();
+        int total = 0;
+        List<String> missed = new ArrayList<>();
+        for (EmployeeDetails ed : employees) {
+            logger.info(">> increasing employee leave for id: {}", ed.getEmployeeId());
+            try {
+                int i = employeeSettingRepository.updateMaxLeaveByEmpId(ed.getEmailId());
+                if (i == 0) {
+                    total++;
+                    logger.info(">> employee leave has increased: {}", ed.getEmployeeId());
+                } else {
+                    missed.add(ed.getEmployeeId());
+                }
+            }catch (Exception ex){
+                logger.info(">> error: {}", ex.getMessage());
+                missed.add(ed.getEmployeeId());
+            }
+        }
+        logger.info(">> summery: ");
+        System.out.println("total updated: " + total);
+        System.out.println("list of user which missed: " + missed);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
