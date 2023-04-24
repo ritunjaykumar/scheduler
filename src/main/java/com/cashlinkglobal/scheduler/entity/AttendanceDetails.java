@@ -34,7 +34,7 @@ public class AttendanceDetails implements Serializable {
     private long id;
 
     @Column(name = "EMPLOYEE_ID", nullable = false, updatable = false)
-    private String employeeId;
+    private Long employeeId;
 
     @Column(name = "ATTENDANCE_DATE", updatable = false, nullable = false)
     private LocalDate attendanceDate;

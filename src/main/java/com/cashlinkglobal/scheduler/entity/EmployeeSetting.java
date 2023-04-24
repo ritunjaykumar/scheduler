@@ -28,7 +28,7 @@ public class EmployeeSetting {
     private int id;
 
     @Column(name = "EMP_ID", nullable = false, length = 10)
-    private String empId;
+    private Long empId;
 
     @Column(name = "MAX_LEAVE", nullable = false)
     private double maxLeave;

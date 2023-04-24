@@ -90,7 +90,7 @@ public class SchedulerServiceImpl implements SchedulerService {
         for (EmployeeDetails employee : employees) {
 
             AttendanceDetails attendanceDetails = AttendanceDetails.builder()
-                    .employeeId(employee.getEmployeeId())
+                    .employeeId(employee.getId())
                     .attendanceDate(now)
                     .description(description)
                     .leaveType(leaveDetails)
