@@ -1,6 +1,6 @@
 package com.cashlinkglobal.scheduler.service.leave;
 
-import com.cashlinkglobal.scheduler.entity.LeaveTypeDetails;
+import com.cashlinkglobal.scheduler.entity.tables.LeaveTypeDetails;
 import com.cashlinkglobal.scheduler.repositry.LeaveTypeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

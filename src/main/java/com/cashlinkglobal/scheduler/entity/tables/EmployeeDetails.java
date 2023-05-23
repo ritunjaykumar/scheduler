@@ -1,9 +1,10 @@
-package com.cashlinkglobal.scheduler.entity;
+package com.cashlinkglobal.scheduler.entity.tables;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity //employee_detail_new
 @Table(name = "EMPLOYEE_DETAIL_NEW")
@@ -30,10 +31,15 @@ public class EmployeeDetails implements Serializable {
     @Column(name = "DOB", nullable = false)
     private String dob;
 
+    @Column(name = "doj", nullable = false, columnDefinition = "DATE", updatable = false)
+    private LocalDate doj;
+
     @Column(name = "EMAIL_ID", nullable = false)
     private String emailId;
 
     @Column(name = "MOBILE_NUM", nullable = false)
     private String mobileNumber;
 
+    @Column(name = "PROFILE_URL")
+    private String profileUrl;
 }

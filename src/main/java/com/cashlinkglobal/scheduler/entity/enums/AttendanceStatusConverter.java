@@ -1,6 +1,4 @@
-package com.cashlinkglobal.scheduler.enums;
-
-import com.cashlinkglobal.scheduler.entity.AttendanceDetails;
+package com.cashlinkglobal.scheduler.entity.enums;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

@@ -1,8 +1,8 @@
-package com.cashlinkglobal.scheduler.entity;
+package com.cashlinkglobal.scheduler.entity.tables;
 
 
-import com.cashlinkglobal.scheduler.enums.AttendanceStatus;
-import com.cashlinkglobal.scheduler.enums.AttendanceStatusConverter;
+import com.cashlinkglobal.scheduler.entity.enums.AttendanceStatus;
+import com.cashlinkglobal.scheduler.entity.enums.AttendanceStatusConverter;
 import lombok.*;
 
 import javax.persistence.*;

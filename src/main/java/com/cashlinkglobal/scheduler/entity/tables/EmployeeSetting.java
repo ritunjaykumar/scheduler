@@ -1,4 +1,4 @@
-package com.cashlinkglobal.scheduler.entity;
+package com.cashlinkglobal.scheduler.entity.tables;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,5 +35,9 @@ public class EmployeeSetting {
 
     @Column(name = "MONTHLY_LEAVE", nullable = false)
     private double monthlyLeave;
+
+    @Column(name = "FCM_TOKEN", nullable = false)
+    private String fcmToken;
+
 
 }

@@ -1,16 +1,15 @@
 package com.cashlinkglobal.scheduler.service.attendance;
 
-import com.cashlinkglobal.scheduler.entity.AttendanceDetails;
-import com.cashlinkglobal.scheduler.entity.CalenderDetails;
-import com.cashlinkglobal.scheduler.entity.EmployeeDetails;
-import com.cashlinkglobal.scheduler.entity.LeaveTypeDetails;
-import com.cashlinkglobal.scheduler.enums.AttendanceStatus;
+import com.cashlinkglobal.scheduler.entity.tables.AttendanceDetails;
+import com.cashlinkglobal.scheduler.entity.tables.CalenderDetails;
+import com.cashlinkglobal.scheduler.entity.tables.EmployeeDetails;
+import com.cashlinkglobal.scheduler.entity.tables.LeaveTypeDetails;
+import com.cashlinkglobal.scheduler.entity.enums.AttendanceStatus;
 import com.cashlinkglobal.scheduler.repositry.AttendanceRepository;
 import com.cashlinkglobal.scheduler.repositry.EmployeeSettingRepository;
 import com.cashlinkglobal.scheduler.service.calender.CalenderService;
 import com.cashlinkglobal.scheduler.service.employee.EmployeeService;
 import com.cashlinkglobal.scheduler.service.leave.LeaveService;
-import com.netflix.discovery.converters.Auto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -115,12 +114,12 @@ public class SchedulerServiceImpl implements SchedulerService {
                 int i = employeeSettingRepository.updateMaxLeaveByEmpId(ed.getEmployeeId());
                 if (i == 1) {
                     total++;
-                    System.out.println("info: "+i);
+                    System.out.println("info: " + i);
                     logger.info(">> employee leave has increased: {}", ed.getEmployeeId());
                 } else {
                     missed.add(ed.getEmployeeId());
                 }
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 logger.info(">> error: {}", ex.getMessage());
                 missed.add(ed.getEmployeeId());
             }

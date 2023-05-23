@@ -1,6 +1,6 @@
 package com.cashlinkglobal.scheduler.service.calender;
 
-import com.cashlinkglobal.scheduler.entity.CalenderDetails;
+import com.cashlinkglobal.scheduler.entity.tables.CalenderDetails;
 
 import java.time.LocalDate;
 

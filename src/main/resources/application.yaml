@@ -16,10 +16,10 @@ spring:
   datasource:
     username: postgres
     password: creditcard
-    url:  jdbc:postgresql://172.16.10.158:5432/hms
-#    username: postgres
-#    password: root
-#    url: jdbc:postgresql://localhost:5432/attendance
+    url: jdbc:postgresql://172.16.10.158:5432/hms
+  #    username: postgres
+  #    password: root
+  #    url: jdbc:postgresql://localhost:5432/attendance
   jpa:
     show-sql: true
     properties:
@@ -31,6 +31,11 @@ spring:
     allow-circular-references: true
 #    web-application-type: reactive
 cgs:
+  api:
+    cashlink-service:
+      base-url: http://CASHLINK-SERVICE/service
+      group-notification: /send/group/notification
+      notification-auth-code: e5b46ae9-b718-4411-ba9f-f985d282493e
   default:
     leave_type_id: 5
     public_leave_id: 6
@@ -40,7 +45,7 @@ cgs:
       size: 10
   scheduler:
     attendance:
-      interval-in-cron: 0 35 17 * * *
+      interval-in-cron: 0 53 09 * * *
     leave:
       interval-in-cron: 0 0 0 1 * *
 #    For example, a cron expression: 0 15 10 * * * is triggered to run at 10:15 a.m. every day ( every 0th second, 15th minute, 10th hour, every day)

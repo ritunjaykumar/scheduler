@@ -1,4 +1,4 @@
-package com.cashlinkglobal.scheduler.enums;
+package com.cashlinkglobal.scheduler.entity.enums;
 
 import lombok.Getter;
 

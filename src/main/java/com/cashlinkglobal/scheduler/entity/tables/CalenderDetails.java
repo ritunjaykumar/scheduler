@@ -1,4 +1,4 @@
-package com.cashlinkglobal.scheduler.entity;
+package com.cashlinkglobal.scheduler.entity.tables;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

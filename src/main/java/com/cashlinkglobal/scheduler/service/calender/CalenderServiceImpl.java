@@ -1,6 +1,6 @@
 package com.cashlinkglobal.scheduler.service.calender;
 
-import com.cashlinkglobal.scheduler.entity.CalenderDetails;
+import com.cashlinkglobal.scheduler.entity.tables.CalenderDetails;
 import com.cashlinkglobal.scheduler.repositry.CalenderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
