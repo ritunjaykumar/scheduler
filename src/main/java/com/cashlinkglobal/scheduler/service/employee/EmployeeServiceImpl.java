@@ -7,16 +7,15 @@ import com.cashlinkglobal.scheduler.entity.enums.NotificationType;
 import com.cashlinkglobal.scheduler.entity.projections.WishEmployeeProjection;
 import com.cashlinkglobal.scheduler.entity.tables.CelebrationTemplate;
 import com.cashlinkglobal.scheduler.entity.tables.EmployeeDetails;
-import com.cashlinkglobal.scheduler.entity.tables.EmployeeSetting;
 import com.cashlinkglobal.scheduler.repositry.CelebrationRepository;
 import com.cashlinkglobal.scheduler.repositry.EmployeeRepository;
 import com.cashlinkglobal.scheduler.repositry.EmployeeSettingRepository;
+import com.cashlinkglobal.scheduler.service.api.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
@@ -30,6 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     private CelebrationRepository celebrationRepository;
     @Autowired
     private EmployeeSettingRepository employeeSettingRepository;
+    @Autowired
+    private Api api;
 
     @Override
     public List<EmployeeDetails> getEmployees() {
@@ -91,7 +92,6 @@ public class EmployeeServiceImpl implements EmployeeService {
          * 3:dob & anniversary
          * 4:anniversary
          */
-        //todo need to fetch all fcm tokens
 
         final List<NotificationCommonDto> notificationCommonDtos = new ArrayList<>();
 
@@ -145,6 +145,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .payload(notificationCommonDtos)
                 .build();
 
+        api.sendNotification(notificationDto);
 
         System.out.println("test final notificationCommonDtos : " + notificationCommonDtos);
 
@@ -182,14 +183,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                     .title(celebrationTemplate.getTitle())
                     .body(celebrationTemplate.getBody())
                     .image(celebrationTemplate.getImage())
-                    .notificationType(NotificationType.BIRTHDAY)
+                    .notificationType(NotificationType.ANNIVERSARY)
                     .build();
         } else {
             return NotificationCommonDto.builder()
                     .title("Year completion")
                     .body("Best wishes for a joyous day filled with love and laughter. May your days be filled " +
                             "with sunshine, beautiful colours and wishes to come.")
-                    .notificationType(NotificationType.BIRTHDAY)
+                    .notificationType(NotificationType.ANNIVERSARY)
                     .build();
         }
 
@@ -203,14 +204,14 @@ public class EmployeeServiceImpl implements EmployeeService {
                     .title(celebrationTemplate.getTitle())
                     .body(celebrationTemplate.getBody())
                     .image(celebrationTemplate.getImage())
-                    .notificationType(NotificationType.BIRTHDAY)
+                    .notificationType(NotificationType.NEW_JOINING)
                     .build();
         } else {
             return NotificationCommonDto.builder()
                     .title("New Joining")
                     .body("Best wishes for a joyous day filled with love and laughter. May your days be " +
                             "filled with sunshine, beautiful colours and wishes to come.")
-                    .notificationType(NotificationType.BIRTHDAY)
+                    .notificationType(NotificationType.NEW_JOINING)
                     .build();
         }
 

@@ -45,7 +45,7 @@ cgs:
       size: 10
   scheduler:
     attendance:
-      interval-in-cron: 0 53 09 * * *
+      interval-in-cron: 0 29 12 * * *
     leave:
       interval-in-cron: 0 0 0 1 * *
 #    For example, a cron expression: 0 15 10 * * * is triggered to run at 10:15 a.m. every day ( every 0th second, 15th minute, 10th hour, every day)
